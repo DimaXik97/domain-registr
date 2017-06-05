@@ -54,6 +54,7 @@ var user3={
      });
      it('регистрировать пользователя', () => {
          sandbox.stub(userRepository, 'findOne').returns(Promise.resolve(null));
+         sandbox.stub(userRepository, 'create').returns(Promise.resolve(userObj));
          var promise = authService.register(user1);
          return promise.then(data=> data.should.be.eql({success: true}));
      });
