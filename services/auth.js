@@ -17,7 +17,6 @@ module.exports = (userRepository, errors) => {
                 }
                 else if(data.login.length<3||data.password.length<3)
                 {
-                    console.log("err data");
                     throw(errors.errorData);
                 }
                 else {

@@ -3,16 +3,16 @@ const Sequelize = require('sequelize');
 const assert = require("assert");
 const sinon = require('sinon');
 var should = require('should');
-const config = require('./config');
-const dbcontext = require('./context/db')(Sequelize, config);
-const errors = require('./utils/errors');
+const config = require('../../config');
+const dbcontext = require('../../context/db')(Sequelize, config);
+const errors = require('../../utils/errors');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 const Promise = require("bluebird");
 
 var userRepository = dbcontext.user;
 
-var authService = require('./services/auth')(userRepository, errors);
+var authService = require('../../services/auth')(userRepository, errors);
 
 var sandbox;
 beforeEach(function () {
