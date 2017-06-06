@@ -12,7 +12,7 @@ const dbcontext = require('./context/db')(Sequelize, config);
 
 const userService = require('./services/user')(dbcontext.user, errors);
 const authService = require('./services/auth')(dbcontext.user, errors);
-const domainService = require('./services/domain')(dbcontext.domain, errors, config);
+const domainService = require('./services/domain')(dbcontext.domain,dbcontext.user, errors, config);
 
 const apiController = require('./controllers/api')(userService, authService, domainService);
 

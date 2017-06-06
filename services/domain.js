@@ -1,6 +1,6 @@
 var needle = require('needle');
 var Promise = require("bluebird");
-module.exports = (domainRepository, errors, config) => {
+module.exports = (domainRepository,userRepository, errors, config) => {
     var cost=config.cost;
     return {
         checkDomain: checkDomain,
@@ -53,6 +53,7 @@ module.exports = (domainRepository, errors, config) => {
                 else
                     reject(errors.invalidDomainOrIP);
             })
+            .catch(err=>reject(err));
         })
     }
     function pay(id,idUser)
@@ -67,7 +68,7 @@ module.exports = (domainRepository, errors, config) => {
                 }
             })
             .then(user=>{
-                if(user.money<cost) return  reject(errors.noMoney);
+                if(user.money<cost) return  reject(errors.notMoney);
                 else
                 {
                     Promise.all([
